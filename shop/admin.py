@@ -6,5 +6,5 @@ from shop.models import Part
 # Register your models here.
 @admin.register(Part)
 class PartAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["id", "name"]
 
