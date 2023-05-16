@@ -5,4 +5,5 @@ from . import views
 
 urlpatterns = [
     path("parts", views.ListPart.as_view()),
+    path('parts/<pk>', PartDetailView.as_view())
     ]
