@@ -26,7 +26,10 @@ class UserLogIn(ObtainAuthToken):
             return Response({
                 'token': token.key,
                 'id': user.pk,
-                'username': user.username
+                'username': user.username,
+                'first_name': user.first_name,
+                'last_name': user.last_name,
+                'bio': user.bio,
             })
         except:
             return Response("Nie ma takiego uzytkownika.")
