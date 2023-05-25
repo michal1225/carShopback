@@ -2,14 +2,20 @@ import django_filters
 from django.http import Http404
 from django.utils import timezone
 from django.views.generic import DetailView, DeleteView
-from rest_framework import status
+from rest_framework import status, viewsets
 from rest_framework.generics import ListAPIView, DestroyAPIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from shop.models import Part
 from shop.serializers import PartSerializer
 
+
+class PartsViewSet(viewsets.ModelViewSet):
+    queryset = Part.objects.all()
+    serializer_class = PartSerializer
+    permission_classes = [IsAuthenticated]
 
 class ListPart(APIView):
     queryset = Part.objects.all()
