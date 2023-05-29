@@ -38,5 +38,6 @@ urlpatterns = [
     path(r'api-token-refresh/', refresh_jwt_token),
     path("shop/", include('shop.urls')),
     path("users/", include('users.urls')),
+    path("contact/", include('contact.urls')),
     re_path(r'^$', RedirectView.as_view(url=reverse_lazy('api-root'), permanent=False)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
