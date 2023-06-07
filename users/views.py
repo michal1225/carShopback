@@ -1,8 +1,11 @@
-from rest_framework import viewsets
+from django.contrib.auth import logout
+from rest_framework import viewsets, status
+from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .models import User
 from .serializers import UserSerializer
@@ -33,3 +36,11 @@ class UserLogIn(ObtainAuthToken):
             })
         except:
             return Response("Nie ma takiego uzytkownika.")
+
+
+@permission_classes([IsAuthenticated])
+class Logout(ObtainAuthToken):
+
+    def get(self, request, format=None):
+        logout(request)
+        return Response(status=status.HTTP_200_OK)
